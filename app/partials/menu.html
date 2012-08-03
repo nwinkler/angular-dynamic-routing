@@ -1,8 +1,9 @@
 <div ng-controller="MenuController" >
+	<a>Update</a>
+	
 	<ul class="nav nav-pills">
-		<li><a href="#/home">Home</a>
-		<li ng-repeat="menu in menus">
-			<a href="{{menu.link}}">{{menu.name}}</a>
+		<li ng-class="{true:'active', false:''}[active == menu.name]" ng-repeat="menu in menus">
+			<a ng-click="selectMenuEntry(menu.name, menu.link)">{{menu.name}}</a>
 		</li>
 	</ul>
 </div>
