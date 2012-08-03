@@ -10,12 +10,12 @@ HomeController.$inject = [];
 function MenuController($scope, $location, menuService) {
 	$scope.menus = menuService.getMenuEntries(0);
 	
-	$scope.active = "Home";
+	$scope.active = 0;
 	
-	$scope.selectMenuEntry = function(name, link) {
-		$scope.active = name;
+	$scope.selectMenuEntry = function(selectedIndex) {
+		$scope.active = selectedIndex;
 		
-		$location.path(link);
+		$location.path($scope.menus[selectedIndex].link);
 	};
 }
 MenuController.$inject = ['$scope', '$location', 'menuService'];
