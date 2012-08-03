@@ -7,14 +7,10 @@ function HomeController() {
 }
 HomeController.$inject = [];
 
-function MenuController($scope) {
-	$scope.menus = [
-	    { name: 'Entry 1', link: '#/link1' },
-	    { name: 'Entry 2', link: '#/link2' },
-	    { name: 'Entry 3', link: '#/link3' }
-	];
+function MenuController($scope, menuService) {
+	$scope.menus = menuService.getMenuEntries(0);
 }
-MenuController.$inject = ['$scope'];
+MenuController.$inject = ['$scope', 'menuService'];
 
 function PageController() {
 	
