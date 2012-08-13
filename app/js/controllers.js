@@ -19,7 +19,7 @@ function MenuController($scope, $location, menuService) {
 			$scope.currentMenuSet = 0;
 		}
 		
-		$scope.menus = menuService.getMenuEntries($scope.currentMenuSet);
+		$scope.updateMenuEntries();
 	};
 	
 	$scope.selectMenuEntry = function(selectedIndex) {
@@ -28,7 +28,20 @@ function MenuController($scope, $location, menuService) {
 		$location.path($scope.menus[selectedIndex].link);
 	};
 	
-	$scope.menus = menuService.getMenuEntries($scope.currentMenuSet);
+	$scope.updateMenuEntries = function() {
+		var i,
+			menu;
+		
+		$scope.menus = menuService.getMenuEntries($scope.currentMenuSet);
+		
+		for (i = 0; i < $scope.menus.length; i++) {
+			menu = $scope.menus[i];
+			
+			globalRouteProvider.when(menu.link, {templateUrl: menu.templateUrl, controller: PageController});
+		}
+	};
+	
+	$scope.updateMenuEntries();
 }
 MenuController.$inject = ['$scope', '$location', 'menuService'];
 
