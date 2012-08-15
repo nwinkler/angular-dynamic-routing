@@ -1,13 +1,13 @@
 'use strict';
 
-var globalRouteProvider;
-
-// Declare app level module which depends on filters, and services
-angular.module('angular-dynamic-routing', ['angular-dynamic-routing.services']).
-  config(['$routeProvider', function($routeProvider) {
-	globalRouteProvider = $routeProvider;  
-	  
-    $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: HomeController});
-    $routeProvider.otherwise({redirectTo: '/home'});
-  }]);
-
+(function (test) {
+	// Declare app level module which depends on filters, and services
+	var module = angular.module('angular-dynamic-routing', ['angular-dynamic-routing.services']);
+	
+	module.config(['$routeProvider', function($routeProvider) {
+		test.routeProvider = $routeProvider;  
+		  
+	    $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'HomeController'});
+	    $routeProvider.otherwise({redirectTo: '/home'});
+	}]);
+}(window.test = (window.test || {})));

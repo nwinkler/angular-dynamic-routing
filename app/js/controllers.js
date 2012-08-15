@@ -37,8 +37,11 @@ function MenuController($scope, $location, menuService) {
 		for (i = 0; i < $scope.menus.length; i++) {
 			menu = $scope.menus[i];
 			
-			globalRouteProvider.when(menu.link, {templateUrl: menu.templateUrl, controller: PageController});
+			test.routeProvider.when(menu.link, {templateUrl: menu.templateUrl, controller: PageController});
 		}
+		
+		// Always default to home after a change in the menus
+		$scope.selectMenuEntry(0);
 	};
 	
 	$scope.updateMenuEntries();
